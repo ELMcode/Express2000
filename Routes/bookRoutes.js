@@ -21,6 +21,19 @@ router.get('/livres/:id', (req,res) => {
     }
 })
 
+router.post('/ajout-livre', (req, res) => {
+    const newLivre = req.body;
+
+    livres.push(newLivre);
+
+    fs.writeFile('data/livres.json', JSON.stringify(livres), (err) => {
+        if (err) {
+            res.status(500).send("Echec lors de l'écriture de la data");
+        } else {
+            res.status(201).send('Livre ajouté');
+        }
+    });
+});
 
 
 module.exports = router;
