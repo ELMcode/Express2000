@@ -10,6 +10,17 @@ router.get('/livres', (req,res) => {
     res.json(livres);
 })
 
+router.get('/livres/:id', (req,res) => {
+    const id =  req.params.id;
+    const livre = livres.find(livre => livre.id === parseInt(id));
+
+    if (livre) {
+        res.json(livre);
+    } else {
+        res.status(404).send('Livre non trouvé');
+    }
+})
+
 
 
 module.exports = router;
