@@ -2,7 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
-const Movie = require('./models/movies');
+
+const cinemaRouter = require('./routes/movieRoutes')
+
+app.use('/movies', cinemaRouter)
 
 mongoose.connect('mongodb://localhost:27017/cinemaDB', {
     useNewUrlParser: true,
