@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const bp = require('body-parser')
 
 const data = fs.readFileSync('data/livres.json');
 const livres = JSON.parse(data);
 
+router.use(bp.json());
+router.use(bp.urlencoded({ extended: true }));
 
 router.get('/livres', (req,res) => {
     res.json(livres);
@@ -23,6 +26,7 @@ router.get('/livres/:id', (req,res) => {
 
 router.post('/ajout-livre', (req, res) => {
     const newLivre = req.body;
+// TODO : req.body undefined ??
 
     livres.push(newLivre);
 
@@ -35,5 +39,8 @@ router.post('/ajout-livre', (req, res) => {
     });
 });
 
+router.get('/recherche-livre/auteur/:auteur', (req, res) => {
+
+});
 
 module.exports = router;
