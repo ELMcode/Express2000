@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
-    title: String,
-    description: String,
-    director: String,
-    releaseDate: Date,
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    director: { type: String, required: true },
+    releaseDate: { type: Date, required: true },
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
